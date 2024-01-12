@@ -1,0 +1,189 @@
+:root {
+  --in-place :#18ba89;
+  --not-in-place :#f89e13;
+  --no :#27393f;
+}
+/* تعيين أنماط عامة للصفحة */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* تحديد خصائص الجسم */
+  background-color: #eee;
+  padding: 0;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* تنسيق العنوان الرئيسي */
+h1 {
+  background-color: white;
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+}
+
+/* تخطيط اللعبة */
+.guess-game {
+  display: flex;
+  flex-direction: column; /* تحديد اتجاه العرض في حالة شاشات صغيرة */
+  align-items: center; /* توسيط المحتوى */
+  width: 100%;
+  max-width: 600px; /* تحديد العرض الأقصى للمحتوى */
+  margin: auto;
+  padding: 10px; /* إضافة هامش لتجنب لصق العناصر بالحواف */
+
+  /* تنسيق منطقة الإدخال */
+  .inputs {
+    padding: 10px;
+    > div {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: row; /* ضبط اتجاه العناصر في حالة شاشات صغيرة */
+      gap: 10px;
+      align-items: center;
+      span {
+        font-size: 18px;
+        text-transform: capitalize;
+      }
+      input {
+        /* تخصيص مظهر حقول الإدخال */
+        width: 30px;
+        height: 30px;
+        font-size: 20px; /* تقليل حجم الخط للأجهزة الصغيرة */
+        text-align: center;
+        caret-color: rgb(255, 39, 39);
+        text-transform: uppercase;
+        border: none;
+        border-bottom: 2px solid #333; /* تقليل سمك الخط للأجهزة الصغيرة */
+        &:focus {
+          outline-color: #777;
+        }
+        &.in-place {
+          background-color: var(--in-place);
+          color: white;
+          border-bottom: var(--in-place);
+        }
+        &.not-in-place {
+          background-color: var(--not-in-place);
+          color: white;
+          border-bottom: var(--not-in-place);
+        }
+        &.no {
+          background-color: var(--no);
+          color: white;
+          border-bottom: var(--no);
+        }
+      }
+      &.disabled {
+        opacity: .8;
+      }
+      &.disabled input {
+        pointer-events: none;
+      }
+    }
+  }
+
+  /* تنسيق أزرار اللعبة */
+  .buttons {
+    display: flex;
+    flex-direction: row; /* تحديد اتجاه العرض في حالة شاشات صغيرة */
+    gap: 10px;
+    button {
+      /* تخصيص مظهر الأزرار */
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px; /* تقليل حجم الخط للأجهزة الصغيرة */
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      text-transform: capitalize;
+      &.check {
+        background-color: #f44336;
+        flex: 1;
+      }
+      &.hint {
+        background-color: #03a9f4;
+      }
+      &:disabled {
+        background-color: #777;
+        cursor: no-drop;
+      }
+    }
+  }
+
+  /* تنسيق لوحة التحكم في اللعبة */
+  .key-colors {
+    h2 {
+      text-transform: capitalize;
+      text-align: center;
+    }
+    .key-color {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      .color {
+        /* تخصيص مظهر مفتاح التحكم */
+        width: 20px; /* تقليل حجم اللون للأجهزة الصغيرة */
+        height: 20px; /* تقليل حجم اللون للأجهزة الصغيرة */
+        background-color: red;
+        border-radius: 50%;
+        margin-right: 10px;
+        &.in-place {
+          background-color: var(--in-place);
+        }
+        &.not-in-place {
+          background-color: var(--not-in-place);
+        }
+        &.no {
+          background-color: var(--no);
+        }
+      }
+      p {
+        font-weight: bold;
+        font-size: 14px; /* تقليل حجم الخط للأجهزة الصغيرة */
+      }
+    }
+  }
+}
+
+/* تنسيق التذييل */
+footer {
+  background-color: var(--no);
+  color: white;
+  position: fixed;
+  padding: 20px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  font-size: 16px; /* تقليل حجم الخط للأجهزة الصغيرة */
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* تنسيق رسالة الفوز أو الخسارة */
+.msg {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px; /* تقليل حجم الخط للأجهزة الصغيرة */
+  font-weight: bold;
+  text-transform: capitalize;
+  color: var(--in-place);
+  text-shadow: 0 0 20px black;
+  span {
+    font-size: 24px; /* تقليل حجم الخط للأجهزة الصغيرة */
+    color: #f44336;
+  }
+  &.lose {
+    color: #f44336;
+  }
+}
